@@ -3,38 +3,23 @@
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!-- Favicon and Icons -->
   <link rel="icon" href="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/Human%20Capability%20Amplified.webp" type="image/webp">
   <link rel="apple-touch-icon" href="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/Human%20Capability%20Amplified.webp">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/Human%20Capability%20Amplified.webp">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/Human%20Capability%20Amplified.webp">
-
-  <!-- PWA -->
   <meta name="theme-color" content="#0f766e">
-
-  <!-- Primary Meta -->
   <title>WorkFamily AI</title>
   <meta name="description" content="AI tools built for families and the people who support them at work." />
   <meta name="author" content="WorkFamily AI" />
   <link rel="canonical" href="https://workfamilyai.org/" />
-
-  <!-- Open Graph -->
   <meta property="og:title" content="WorkFamily AI" />
   <meta property="og:description" content="AI tools built for families and the people who support them at work." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/Human%20Capability%20Amplified.webp" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://workfamilyai.org/" />
   <meta property="og:site_name" content="WorkFamily AI" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="WorkFamily AI" />
   <meta name="twitter:description" content="AI tools built for families and the people who support them at work." />
   <meta name="twitter:image" content="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/Human%20Capability%20Amplified.webp" />
-
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,21 +30,158 @@
     "description": "AI tools built for families and the people who support them at work."
   }
   </script>
+  <style>
+    /* ── FRONT DOOR DIAGNOSTIC ── */
+    .fd-wrap {
+      background: linear-gradient(135deg, #0d4f4a 0%, #0f766e 60%, #134e4a 100%);
+      color: #fff;
+      padding: 72px 24px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .fd-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .fd-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .fd-title {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 800;
+      margin: 0 0 12px;
+      line-height: 1.15;
+    }
+    .fd-sub {
+      font-size: 17px;
+      opacity: 0.85;
+      max-width: 540px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .fd-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .fd-price {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .fd-price-note {
+      font-size: 14px;
+      opacity: 0.7;
+      font-weight: 500;
+    }
+    .fd-outcomes {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 36px;
+      max-width: 640px;
+    }
+    .fd-outcome {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .fd-cta {
+      display: inline-block;
+      background: #fff;
+      color: #0f766e;
+      font-size: 17px;
+      font-weight: 800;
+      padding: 18px 40px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    }
+    .fd-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.3);
+    }
+    .fd-secondary {
+      display: block;
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: 0.65;
+    }
+    .fd-secondary a {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .fd-trust {
+      margin-top: 28px;
+      font-size: 12px;
+      opacity: 0.55;
+      letter-spacing: 0.3px;
+    }
+  </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-logo">WorkFamilyAI <span></span></div>
-  <a href="#contact" class="nav-cta">Get Early Access</a>
+  <a href="https://buy.stripe.com/5kQcN48w4gxF78L4KI4ZG0S" class="nav-cta">Start Diagnostic — A$79</a>
 </nav>
+
+<!-- ── FRONT DOOR ── -->
+<section class="fd-wrap">
+  <div class="fd-badge">Start Here</div>
+  <h2 class="fd-title">WorkFamilyAI Starter Diagnostic</h2>
+  <p class="fd-sub">Get a personalised Work + Family AI profile in minutes.<br>No meetings. No waiting. No quote process.</p>
+
+  <div class="fd-price-row">
+    <span class="fd-price">A$79</span>
+    <span class="fd-price-note">one-time · instant delivery</span>
+  </div>
+
+  <div class="fd-outcomes">
+    <span class="fd-outcome">✓ Current-state snapshot</span>
+    <span class="fd-outcome">✓ Top 3 friction points</span>
+    <span class="fd-outcome">✓ Top 3 AI opportunities</span>
+    <span class="fd-outcome">✓ Simple action roadmap</span>
+    <span class="fd-outcome">✓ Recommended next-step path</span>
+  </div>
+
+  <a class="fd-cta" href="https://buy.stripe.com/5kQcN48w4gxF78L4KI4ZG0S">
+    Start Diagnostic Now →
+  </a>
+
+  <span class="fd-secondary">
+    Or <a href="#services">explore our full services below</a>
+  </span>
+  <p class="fd-trust">Secure checkout · Stripe · Instant digital delivery · ABN 70 666 271 272</p>
+</section>
 
 <section class="hero">
   <div class="hero-tag">T4H Portfolio · CORE</div>
   <h1>WorkFamilyAI<br><em>AI Tools for Working Parents</em></h1>
-  <p class="hero-desc">WorkFamilyAI helps working parents — and the employers who support them — use AI to balance career and family. Smarter scheduling, childcare intelligence, and workflow tools built for real life....</p>
+  <p class="hero-desc">WorkFamilyAI helps working parents — and the employers who support them — use AI to balance career and family. Smarter scheduling, childcare intelligence, and workflow tools built for real life.</p>
   <div class="hero-btns">
-    <a href="#contact" class="btn-primary">
-              <a href="https://workfamilyai-one-click-augmentation.vercel.app/" target="_blank" style="display:inline-block;margin-left:12px;padding:14px 28px;background:transparent;color:inherit;border:2px solid currentColor;border-radius:8px;font-weight:600;text-decoration:none;font-size:15px;transition:all 0.2s">Deploy yourself →</a>Get Early Access</a>
+    <a href="https://buy.stripe.com/5kQcN48w4gxF78L4KI4ZG0S" class="btn-primary">Start Diagnostic — A$79</a>
     <a href="#services" class="btn-outline">Learn More</a>
   </div>
 </section>
@@ -95,13 +217,14 @@
           <div class="svc-icon">🚀</div>
           <div class="svc-name">Productivity Coaching</div>
           <div class="svc-desc">Personalised AI coaching for working parents navigating career growth alongside family responsibilities.</div>
-        </div></div>
+        </div>
+  </div>
 </section>
 
 <div class="cta-band">
   <h2>Ready to get started?</h2>
-  <p>Talk to the WorkFamilyAI team today. We'll respond within 24 hours.</p>
-  <a href="#contact" class="btn-primary" style="color:var(--deep)">Get Early Access</a>
+  <p>Get your personalised AI diagnostic in minutes — or talk to the team.</p>
+  <a href="https://buy.stripe.com/5kQcN48w4gxF78L4KI4ZG0S" class="btn-primary" style="color:var(--deep)">Start Diagnostic — A$79</a>
 </div>
 
 <section class="section" id="contact">
@@ -121,14 +244,14 @@
       <h3>Get in Touch</h3>
       <div class="contact-item"><div class="contact-item-icon">📧</div><div><div class="contact-item-label">Email</div><div class="contact-item-text">hello@workfamilyai.com.au</div></div></div>
       <div class="contact-item"><div class="contact-item-icon">📍</div><div><div class="contact-item-label">Location</div><div class="contact-item-text">Sydney, Australia</div></div></div>
-      <div class="contact-item"><div class="contact-item-icon">🏢</div><div><div class="contact-item-label">ABN</div><div class="contact-item-text">61 605 746 618</div></div></div>
+      <div class="contact-item"><div class="contact-item-icon">🏢</div><div><div class="contact-item-label">ABN</div><div class="contact-item-text">70 666 271 272</div></div></div>
       <div class="contact-item"><div class="contact-item-icon">🌐</div><div><div class="contact-item-label">Part of T4H Portfolio</div><div class="contact-item-text">tech4humanity.com.au</div></div></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <strong>WorkFamilyAI</strong> · A Tech for Humanity Company · ABN 61 605 746 618 · Sydney, Australia
+  <strong>WorkFamilyAI</strong> · A Tech for Humanity Company · ABN 70 666 271 272 · Sydney, Australia
 </footer>
 
 <script>
@@ -138,7 +261,7 @@
   async function saveLead(data) {
     try {
       const meta = JSON.stringify(data.metadata || {});
-      const sql = `INSERT INTO cap_leads (email, name, phone, source, status, metadata) VALUES ('${(data.email||'').replace(/'/g,"''")}',' ${(data.name||'').replace(/'/g,"''")}',' ${(data.phone||'').replace(/'/g,"''")}',' ${SOURCE}','new','${meta.replace(/'/g,"''")}'::jsonb) RETURNING id`;
+      const sql = `INSERT INTO cap_leads (email, name, phone, source, status, metadata) VALUES ('${(data.email||'').replace(/'/g,"''")}','${(data.name||'').replace(/'/g,"''")}','${(data.phone||'').replace(/'/g,"''")}','${SOURCE}','new','${meta.replace(/'/g,"''")}' ::jsonb) RETURNING id`;
       const r = await fetch(BRIDGE, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fn:'troy-sql-executor',sql})});
       const d = await r.json();
       return d.rows?.[0]?.id || null;
@@ -157,22 +280,17 @@
     await saveLead({ name, email, phone, metadata: { type:'enquiry', message: msg } });
     btn.textContent = 'Send Message'; btn.disabled = false;
     document.getElementById('success-msg').style.display = 'block';
-    document.getElementById('cf-name').value = '';
-    document.getElementById('cf-email').value = '';
-    document.getElementById('cf-phone').value = '';
-    document.getElementById('cf-msg').value = '';
+    ['cf-name','cf-email','cf-phone','cf-msg'].forEach(id => document.getElementById(id).value = '');
+  }
+
+  // Log paid visit
+  if (new URLSearchParams(location.search).get('paid') === '1') {
+    saveLead({ email: '', name: '', phone: '', metadata: { type: 'payment_redirect', sku: 'WFAI-STARTER-79' } });
   }
 </script>
 
 <!-- T4H Buy Widget -->
-<script>window.T4H_BUY_CONFIG={brand:"WFAI",source:"workfamilyai"};</script>
-<script src="https://t4h-checkout-api.vercel.app/public/buy-widget.js" defer></script>
-
-<!-- T4H Buy Widget -->
-<script>
-window.T4H_BUY_CONFIG = { brand: 'WFAI', source: 'workfamilyai' };
-</script>
+<script>window.T4H_BUY_CONFIG = { brand: 'WFAI', source: 'workfamilyai' };</script>
 <script src="https://t4h-checkout-api.vercel.app/api/buy-widget.js" defer></script>
-<!-- /T4H Buy Widget -->
 </body>
 </html>
