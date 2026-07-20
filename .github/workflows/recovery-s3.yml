@@ -1,0 +1,43 @@
+name: Recovery S3 Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: ap-southeast-2
+      BUCKET: t4h-recovery-workfamilyai-140548542136
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22', cache: npm}
+      - name: Build
+        run: |
+          set -euo pipefail
+          if [ -f package.json ]; then if [ -f package-lock.json ]; then npm ci; else npm install; fi; npm run build; fi
+          if [ -f dist/index.html ]; then OUT=dist; elif [ -f build/index.html ]; then OUT=build; elif [ -f index.html ]; then mkdir -p dist && cp -R ./*.html ./*.css ./*.js assets public dist/ 2>/dev/null || true; OUT=dist; else exit 2; fi
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Publish
+        run: |
+          set -euo pipefail
+          aws s3api head-bucket --bucket "$BUCKET" 2>/dev/null || aws s3api create-bucket --bucket "$BUCKET" --region "$AWS_REGION" --create-bucket-configuration LocationConstraint="$AWS_REGION"
+          aws s3api delete-public-access-block --bucket "$BUCKET" || true
+          aws s3api put-bucket-website --bucket "$BUCKET" --website-configuration '{"IndexDocument":{"Suffix":"index.html"},"ErrorDocument":{"Key":"index.html"}}'
+          printf '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":"*","Action":"s3:GetObject","Resource":"arn:aws:s3:::%s/*"}]}' "$BUCKET" >/tmp/policy.json
+          aws s3api put-bucket-policy --bucket "$BUCKET" --policy file:///tmp/policy.json
+          aws s3 sync "$OUT/" "s3://$BUCKET/" --delete
+          URL="http://$BUCKET.s3-website-$AWS_REGION.amazonaws.com"; code=000
+          for i in {1..12}; do code=$(curl -s -o /tmp/site -w '%{http_code}' "$URL" || true); [ "$code" = 200 ] && break; sleep 5; done
+          test "$code" = 200
+          printf '{"status":"REAL","repository":"%s","commit":"%s","bucket":"%s","url":"%s","http_status":%s}\n' "$GITHUB_REPOSITORY" "$GITHUB_SHA" "$BUCKET" "$URL" "$code" | tee deployment-receipt.json
+      - uses: actions/upload-artifact@v4
+        with: {name: recovery-receipt, path: deployment-receipt.json}
