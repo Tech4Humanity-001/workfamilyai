@@ -1,0 +1,28 @@
+name: Persist Recovery Receipt
+on:
+  workflow_run:
+    workflows: ["Recovery S3 Deploy"]
+    types: [completed]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  persist:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: recovery-receipt
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: /tmp/recovery
+      - run: |
+          mkdir -p deployment/receipts
+          cp /tmp/recovery/deployment-receipt.json deployment/receipts/latest-recovery.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add deployment/receipts/latest-recovery.json
+          git diff --cached --quiet || git commit -m 'ops: persist recovery receipt [skip ci]'
+          git push
